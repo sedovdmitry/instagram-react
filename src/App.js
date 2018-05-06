@@ -16,6 +16,7 @@ class App extends Component {
       user: [],
       isUserLoaded: false,
       isPhotosLoaded: false,
+      maxId: '',
     }
   }
 
@@ -38,13 +39,13 @@ class App extends Component {
 
   fetchPhotos() {
     const instagram_api_url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${process.env.REACT_APP_INSTAGRAM_API}&count=5`;
-    console.log()
     request
       .get(instagram_api_url)
       .then((res) => {
         this.setState({
           photos: res.body.data,
-          isPhotosLoaded: true
+          isPhotosLoaded: true,
+          
         })
       })
   }
@@ -59,6 +60,13 @@ class App extends Component {
         <div id="main">
           <div className="inner">
             {tiles}
+          <div className="row" style={{marginTop:"3em"}}>
+            <ul className="actions">
+              <li>
+                <a href="#" className="button special icon fa-download">Загрузить ещё</a>
+              </li>
+            </ul>
+            </div>
           </div>
         </div>
       </div>

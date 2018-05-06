@@ -1,0 +1,62 @@
+/* Icon */
+
+.icon {
+    text-decoration: none;
+    border-bottom: none;
+    position: relative;
+}
+
+    .icon:before {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-transform: none !important;
+    }
+
+    .icon > .label {
+        display: none;
+    }
+
+    .icon.style2 {
+        -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        background-color: transparent;
+        border: solid 1px #c9c9c9;
+        border-radius: 4px;
+        width: auto;
+        height: 2.65em;
+        display: inline-block;
+        text-align: center;
+        line-height: 2.65em;
+        color: inherit;
+        z-index:999;
+        padding: 0 0.5em;
+        margin: 0 0.1em;
+    }
+
+        .icon.style2:before {
+            font-size: 1.1em;
+        }
+
+        .icon.style2:hover {
+            color: #f2849e;
+            border-color: #f2849e;
+        }
+
+        .icon.style2:active {
+            background-color: rgba(242, 132, 158, 0.1);
+        }
+
+        
+		ul.icons {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+            margin: 1em 0 0.5em;
+
+		}
+
