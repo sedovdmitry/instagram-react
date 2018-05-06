@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import dotenv from 'dotenv';
 import request from 'superagent';
-import logo from './logo.svg';
 
 import Header from './components/Header';
 import Tiles from './components/Tiles';
@@ -16,8 +15,10 @@ class App extends Component {
       user: [],
       isUserLoaded: false,
       isPhotosLoaded: false,
-      maxId: '',
+      max_id: '',
     }
+    // Привязка необходима, чтобы сделать this доступным в коллбэке
+    this.fetchPhotos = this.fetchPhotos.bind(this);
   }
 
   componentWillMount() {
@@ -38,15 +39,19 @@ class App extends Component {
   }
 
   fetchPhotos() {
-    const instagram_api_url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${process.env.REACT_APP_INSTAGRAM_API}&count=5`;
+    const instagram_api_url = this.state.max_id 
+     ? `https://api.instagram.com/v1/users/self/media/recent/?access_token=${process.env.REACT_APP_INSTAGRAM_API}&count=5&max_id=${this.state.max_id}`
+     : `https://api.instagram.com/v1/users/self/media/recent/?access_token=${process.env.REACT_APP_INSTAGRAM_API}&count=5`;
     request
       .get(instagram_api_url)
       .then((res) => {
+        console.log(res.body.pagination.next_max_id);
         this.setState({
-          photos: res.body.data,
+          photos: [...this.state.photos, ...res.body.data],
           isPhotosLoaded: true,
-          
+          max_id: res.body.pagination.next_max_id,
         })
+        console.log(this.state.max_id);
       })
   }
 
@@ -63,7 +68,7 @@ class App extends Component {
           <div className="row" style={{marginTop:"3em"}}>
             <ul className="actions">
               <li>
-                <a href="#" className="button special icon fa-download">Загрузить ещё</a>
+                <a href="#" onClick={() => this.fetchPhotos() } className="button special icon fa-download">Загрузить ещё</a>
               </li>
             </ul>
             </div>
@@ -72,6 +77,10 @@ class App extends Component {
       </div>
     );
   }
+
+  
 }
+
+
 
 export default App;
