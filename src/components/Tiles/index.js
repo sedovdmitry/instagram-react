@@ -5,7 +5,7 @@ import Tile from '../Tile'
 const Tiles = ({data}) => {
     return (
         <section className="tiles">
-          {data.map(({caption, images, id, comments, likes, tags}) => 
+          {data.map(({caption, images, id, comments, likes, tags, link}) => 
             (
               <Tile 
                 key={id}
@@ -15,6 +15,7 @@ const Tiles = ({data}) => {
                 comments={comments.count}
                 likes={likes.count}
                 tags={tags}
+                link={link}
               />
             )
           )}

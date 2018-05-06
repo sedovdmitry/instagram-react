@@ -7,9 +7,13 @@ const Header = ({data}) => {
           <div className="inner">
             <div>
               <span className="image left">
-                <img src={data.profile_picture} alt={data.full_name} />
+                <a href="https://www.instagram.com/saratovair/">
+                    <img src={data.profile_picture} alt={data.full_name} />
+                </a>
               </span>
-              <h1 className="App-title">{data.full_name}</h1>
+              <h1 className="App-title">
+                <a href="https://www.instagram.com/saratovair/">{data.full_name}</a>
+              </h1>
               <p>
                 Количество фото: {data.counts.media}
               </p>

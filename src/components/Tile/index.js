@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 import {format} from 'date-fns'
 
-const Tile = ({image, description, created_time, comments, likes, tags}) => {
+const Tile = ({image, description, created_time, comments, likes, tags, link}) => {
     const tagsEl = tags.length ? (
       <li className="icon fa-tags"> {tags.join(", ")}</li>
     ) : ('');
@@ -13,7 +13,7 @@ const Tile = ({image, description, created_time, comments, likes, tags}) => {
         <span className="image">
           <img src={image} alt={description} />
         </span>
-        <a href="#">
+        <a href={link} target="_blank">
           <h2>{description}</h2>
           <div className="content">
               <p>{description}</p>
